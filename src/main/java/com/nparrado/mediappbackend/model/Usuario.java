@@ -1,6 +1,7 @@
 package com.nparrado.mediappbackend.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "usuario")
@@ -9,6 +10,14 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
+
+    @ManyToMany
+    @JoinTable(
+        name = "rel_usuario_rol",
+        joinColumns = @JoinColumn(name = "idRol"),
+        inverseJoinColumns = @JoinColumn(name = "idUsuario")
+    )
+    private Set<Rol> roles;
 
     @Column(name = "nombre", unique=true, nullable = false, length = 50)
     private String nombre;
@@ -25,6 +34,14 @@ public class Usuario {
 
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
     }
 
     public String getNombre() {
