@@ -1,7 +1,7 @@
 package com.nparrado.mediappbackend.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -17,7 +17,7 @@ public class Usuario {
         joinColumns = @JoinColumn(name = "idRol"),
         inverseJoinColumns = @JoinColumn(name = "idUsuario")
     )
-    private Set<Rol> roles;
+    private List<Rol> roles;
 
     @Column(name = "nombre", unique=true, nullable = false, length = 50)
     private String nombre;
@@ -36,11 +36,11 @@ public class Usuario {
         this.idUsuario = idUsuario;
     }
 
-    public Set<Rol> getRoles() {
+    public List<Rol> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Rol> roles) {
+    public void setRoles(List<Rol> roles) {
         this.roles = roles;
     }
 

@@ -1,7 +1,7 @@
 package com.nparrado.mediappbackend.model;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "rol")
@@ -13,20 +13,11 @@ public class Rol {
 
     @ManyToMany
     @JoinTable(
-        name = "rel_usuario_rol",
-        joinColumns = @JoinColumn(name = "idUsuario"),
-        inverseJoinColumns = @JoinColumn(name = "idRol")
+            name = "rel_menu_rol",
+            joinColumns = @JoinColumn(name = "idMenu"),
+            inverseJoinColumns = @JoinColumn(name = "idRol")
     )
-    private Set<Usuario> usuarios;
-
-
-    @ManyToMany
-    @JoinTable(
-        name = "rel_menu_rol",
-        joinColumns = @JoinColumn(name = "idMenu"),
-        inverseJoinColumns = @JoinColumn(name = "idRol")
-    )
-    private Set<Menu> menues;
+    private List<Menu> menues;
 
     @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
@@ -39,19 +30,11 @@ public class Rol {
         this.idRol = idRol;
     }
 
-    public Set<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(Set<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public Set<Menu> getMenues() {
+    public List<Menu> getMenues() {
         return menues;
     }
 
-    public void setMenues(Set<Menu> menues) {
+    public void setMenues(List<Menu> menues) {
         this.menues = menues;
     }
 
